@@ -22,6 +22,10 @@ class Calculate{
             echo $e->getMessage();
         }
     }
+    public function __invoke($a, $b)
+    {
+        echo "Первый аргумент: $a, Второй аргумент: $b"; 
+    }
 
 }
 
