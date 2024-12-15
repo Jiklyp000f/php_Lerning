@@ -5,6 +5,23 @@
     <title>Php_Learning</title>
   </head>
   <body>
+    <?php
+    // Отправляем cookie
+    setcookie("cookie[three]", "Я первый куки");
+    setcookie("cookie[two]", "А я второй");
+    setcookie("cookie[one]", "Буду третьим");
+
+    // Выведем cookie после перезагрузки страницы
+    if (isset($_COOKIE['cookie'])) {
+        foreach ($_COOKIE['cookie'] as $name => $value) {
+            $name = htmlspecialchars($name);
+            $value = htmlspecialchars($value);
+        
+            echo "$name : $value <br />\n" . "<br>";
+        }
+    }
+    
+    ?>
     <form method="POST">
       <label for="var1">Variable 1:</label>
       <input type="text" name="var1" value="">
@@ -16,14 +33,15 @@
     </form>
 
     <?php
+    
     // Подключаем файл с классом Calculate
     require 'class_calculate.php';
 
     // Проверяем, были ли отправлены данные
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Получаем значения переменных из формы и приводим их к числовому типу
-        $var1 = isset($_POST['var1']) ? floatval($_POST['var1']) : 0;
-        $var2 = isset($_POST['var2']) ? floatval($_POST['var2']) : 0;
+        $var1 = isset($_REQUEST['var1']) ? floatval($_REQUEST['var1']) : 0;
+        $var2 = isset($_REQUEST['var2']) ? floatval($_REQUEST['var2']) : 0;
 
         // Создаем объект класса Calculate
         $calc = new Calculate();
