@@ -7,7 +7,9 @@
 <body>
     <?php
     // Подключаем файл с классом Calculate
-    require_once 'class_calculate.php';
+    require_once __DIR__ . '/vendor/autoload.php';
+    use App\class_calculate;
+   
 
     // Получаем значения переменных из формы или из cookies
     $var1 = isset($_POST['var1']) ? floatval($_POST['var1']) : (isset($_COOKIE['var1']) ? floatval($_COOKIE['var1']) : '');
@@ -34,7 +36,7 @@
     <?php
     // Если данные пришли из формы, выполняем вычисления
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $calc = new Calculate();
+        $calc = new class_calculate();
 
         // Выводим результаты вычислений
         echo "Sum: " . $calc->sum($var1, $var2) . "<br>";

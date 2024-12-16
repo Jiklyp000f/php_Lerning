@@ -1,5 +1,6 @@
 <?php
-class Calculate{
+namespace App;
+class class_calculate{
     public $a;
     public $b;
 
@@ -18,7 +19,7 @@ class Calculate{
     public function div($a, $b)
     {
         try{return $a/$b;}
-        catch(Exception $e){
+        catch(\Exception $e){
             echo $e->getMessage();
         }
     }
